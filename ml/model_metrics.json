@@ -1,0 +1,208 @@
+{
+  "best_model": "Decision Tree",
+  "models": {
+    "Logistic Regression": {
+      "accuracy": 0.5513,
+      "precision": 0.5177,
+      "recall": 0.5513,
+      "f1": 0.3936,
+      "confusion_matrix": [
+        [
+          3,
+          0,
+          594
+        ],
+        [
+          1,
+          1,
+          1196
+        ],
+        [
+          3,
+          1,
+          2201
+        ]
+      ],
+      "labels": [
+        "Fatal",
+        "Major",
+        "Minor"
+      ],
+      "classification_report": {
+        "Fatal": {
+          "precision": 0.42857142857142855,
+          "recall": 0.005025125628140704,
+          "f1-score": 0.009933774834437087,
+          "support": 597.0
+        },
+        "Major": {
+          "precision": 0.5,
+          "recall": 0.0008347245409015025,
+          "f1-score": 0.0016666666666666668,
+          "support": 1198.0
+        },
+        "Minor": {
+          "precision": 0.5514908544224505,
+          "recall": 0.9981859410430839,
+          "f1-score": 0.710458360232408,
+          "support": 2205.0
+        },
+        "accuracy": 0.55125,
+        "macro avg": {
+          "precision": 0.49335409433129307,
+          "recall": 0.33468193040404204,
+          "f1-score": 0.24068626724450393,
+          "support": 4000.0
+        },
+        "weighted avg": {
+          "precision": 0.5177236192146616,
+          "recall": 0.55125,
+          "f1-score": 0.3936219536388213,
+          "support": 4000.0
+        }
+      }
+    },
+    "Decision Tree": {
+      "accuracy": 0.5305,
+      "precision": 0.4322,
+      "recall": 0.5305,
+      "f1": 0.4262,
+      "confusion_matrix": [
+        [
+          13,
+          40,
+          544
+        ],
+        [
+          25,
+          102,
+          1071
+        ],
+        [
+          36,
+          162,
+          2007
+        ]
+      ],
+      "labels": [
+        "Fatal",
+        "Major",
+        "Minor"
+      ],
+      "classification_report": {
+        "Fatal": {
+          "precision": 0.17567567567567569,
+          "recall": 0.021775544388609715,
+          "f1-score": 0.038748137108792845,
+          "support": 597.0
+        },
+        "Major": {
+          "precision": 0.3355263157894737,
+          "recall": 0.08514190317195326,
+          "f1-score": 0.13581890812250333,
+          "support": 1198.0
+        },
+        "Minor": {
+          "precision": 0.5541137493097736,
+          "recall": 0.9102040816326531,
+          "f1-score": 0.688862193238373,
+          "support": 2205.0
+        },
+        "accuracy": 0.5305,
+        "macro avg": {
+          "precision": 0.3551052469249743,
+          "recall": 0.339040509731072,
+          "f1-score": 0.2878097461565564,
+          "support": 4000.0
+        },
+        "weighted avg": {
+          "precision": 0.4321649304805547,
+          "recall": 0.5305,
+          "f1-score": 0.4261962064688303,
+          "support": 4000.0
+        }
+      }
+    },
+    "Random Forest": {
+      "accuracy": 0.5118,
+      "precision": 0.4078,
+      "recall": 0.5118,
+      "f1": 0.4245,
+      "confusion_matrix": [
+        [
+          6,
+          59,
+          532
+        ],
+        [
+          23,
+          147,
+          1028
+        ],
+        [
+          49,
+          262,
+          1894
+        ]
+      ],
+      "labels": [
+        "Fatal",
+        "Major",
+        "Minor"
+      ],
+      "classification_report": {
+        "Fatal": {
+          "precision": 0.07692307692307693,
+          "recall": 0.010050251256281407,
+          "f1-score": 0.017777777777777778,
+          "support": 597.0
+        },
+        "Major": {
+          "precision": 0.3141025641025641,
+          "recall": 0.12270450751252086,
+          "f1-score": 0.17647058823529413,
+          "support": 1198.0
+        },
+        "Minor": {
+          "precision": 0.548349739432542,
+          "recall": 0.8589569160997732,
+          "f1-score": 0.6693762148789538,
+          "support": 2205.0
+        },
+        "accuracy": 0.51175,
+        "macro avg": {
+          "precision": 0.31312512681939436,
+          "recall": 0.33057055828952514,
+          "f1-score": 0.28787486029734194,
+          "support": 4000.0
+        },
+        "weighted avg": {
+          "precision": 0.4078322810416759,
+          "recall": 0.51175,
+          "f1-score": 0.4244999129618272,
+          "support": 4000.0
+        }
+      }
+    }
+  },
+  "labels": [
+    "Fatal",
+    "Major",
+    "Minor"
+  ],
+  "features": [
+    "city",
+    "road_type",
+    "weather",
+    "visibility",
+    "traffic_density",
+    "day_of_week",
+    "festival",
+    "lanes",
+    "traffic_signal",
+    "temperature",
+    "hour",
+    "is_weekend",
+    "is_peak_hour"
+  ]
+}
