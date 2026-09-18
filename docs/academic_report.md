@@ -156,7 +156,7 @@ FastAPI router defines REST endpoints:
 - `GET /api/model-performance`: Comparative evaluation results and confusion matrices.
 
 ### 8.5 React Frontend Dashboard (`frontend/src/App.jsx`)
-Built using React 18, Vite, Tailwind CSS, Recharts, and Leaflet. Provides tabbed navigation across 5 interactive pages: Dashboard, Severity Prediction, AI Vision Inspector, Accident Analytics, Risk Hotspot Map, and Model Performance.
+Built using React 18, Vite, Tailwind CSS, Recharts, and Leaflet. Provides tabbed navigation across 6 interactive pages: Dashboard, Severity Prediction, AI Vision Inspector, Accident Analytics, Risk Hotspot Map, and Model Performance.
 
 ---
 
@@ -191,7 +191,7 @@ Minor                   245       791       490
 
 *Figure 8: On-Demand Severity Prediction form with class probability breakdown.*
 
-![Figure 9: AI Vision Inspector displaying image metrics, inferred features, and severity prediction](assets/performance_preview.png)
+![Figure 9: AI Vision Inspector displaying image metrics, inferred features, and severity prediction](assets/vision_preview.png)
 
 *Figure 9: AI Vision Inspector displaying image metrics, inferred features, and severity prediction.*
 
@@ -202,6 +202,10 @@ Minor                   245       791       490
 ![Figure 11: Geospatial Accident Risk Hotspot Map color-coded by risk category](assets/map_preview.png)
 
 *Figure 11: Geospatial Accident Risk Hotspot Map color-coded by risk category.*
+
+![Figure 12: Model Performance & Confusion Matrix evaluation view](assets/performance_preview.png)
+
+*Figure 12: Model Performance & Confusion Matrix evaluation view.*
 
 ---
 
