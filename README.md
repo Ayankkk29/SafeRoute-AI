@@ -1,26 +1,36 @@
-# SafeRoute AI — Road Accident Risk & Severity Analysis System
+# SafeRoute AI — Multimodal Computer Vision & Road Accident Risk Analysis System
 
-SafeRoute AI is a machine learning and data analytics system built to analyze road accident risks and predict accident severity (`Minor`, `Major`, `Fatal`) based on environmental, temporal, and road infrastructure factors.
+SafeRoute AI is a multimodal Computer Vision and Machine Learning decision-support system built to analyze road accident risks and predict accident severity (`Minor`, `Major`, `Fatal`) using both image-based visual inspection and environmental/road infrastructure data from the **Indian Road Accident Dataset (2022–2025)**.
 
-The project combines a Scikit-Learn machine learning pipeline, a FastAPI REST backend, and an interactive React web dashboard.
+The project combines an OpenCV image processing pipeline, Scikit-Learn machine learning classifiers, a FastAPI REST backend, and an interactive React web dashboard.
 
 ---
 
 ## 📌 Project Overview
 
-Traffic accident severity depends on a combination of road design, weather conditions, time of day, and traffic density. SafeRoute AI processes accident records to train classification models, evaluate their performance, and serve on-demand severity predictions through a REST API.
-
-The system is designed as an academic decision-support tool to explore historical accident patterns and model performance.
+Traffic accident severity depends on a combination of road design, weather conditions, time of day, and traffic density. SafeRoute AI processes accident records and road scene images to extract visual metrics (brightness, contrast, haze index, edge density), train classification models, evaluate their performance, and serve on-demand severity predictions through a REST API.
 
 ---
 
-## 🚀 Features
+## 🚀 Key Features
 
 - **Summary Dashboard**: Overview of key statistics, severity breakdown, and risk categories.
-- **Accident Severity Predictor**: Interactive form that takes road and environmental inputs and returns predicted severity with confidence scores.
+- **Accident Severity Predictor**: Form interface for environmental inputs and on-demand ML severity predictions.
+- **AI Vision Inspector**: OpenCV-powered Computer Vision engine that analyzes uploaded road scene images to extract brightness, contrast, haze, edge density, and infer weather/traffic conditions.
 - **Accident Analytics**: Filterable charts analyzing accident trends across cities, weather conditions, road types, days, and hours.
 - **Accident Risk Map**: Interactive Leaflet map displaying historical accident locations color-coded by risk level.
 - **Model Performance Evaluator**: Performance comparison table, confusion matrix, and detailed classification report for trained models.
+
+---
+
+## 👁️ Computer Vision Architecture
+
+The Computer Vision engine (`ml/vision_analyzer.py`) processes uploaded road scene snapshots:
+1. **Color Space Analysis**: Evaluates HSV and grayscale intensity distributions to calculate **Brightness Index** and **Saturation**.
+2. **Texture & Contrast Assessment**: Computes standard deviation of pixel intensities to measure scene **Contrast**.
+3. **Haze & Visibility Index**: Calculates high-pass vs low-pass ratio to quantify fog/haze density.
+4. **Edge & Hazard Density Detection**: Uses Canny edge detection and contour extraction to measure surface irregularity and hazard counts.
+5. **Multimodal Mapping**: Automatically converts extracted visual parameters into the ML feature vector for vision-assisted severity classification.
 
 ---
 
@@ -54,13 +64,11 @@ We trained and compared three classification models using an 80/20 stratified tr
 
 The pipeline automatically selects the **Decision Tree Classifier** based on weighted F1-score and saves the model pipeline to `ml/model.pkl`.
 
-### Performance Discussion & Limitations
-The weighted F1-scores range between `0.39` and `0.43`. This reflects the difficulty of predicting accident severity using environmental and temporal features alone. In real-world scenarios, factors like driver behavior, vehicle condition, and speed play significant roles. The modest performance provides a clear baseline and highlights opportunities for future feature engineering and class balancing.
-
 ---
 
 ## 🛠️ Technology Stack
 
+- **Computer Vision**: OpenCV (`opencv-python-headless`), Pillow (PIL), NumPy
 - **Frontend**: React 18, Vite, Tailwind CSS, Recharts, Leaflet, React-Leaflet, Lucide Icons
 - **Backend**: Python 3.10+, FastAPI, Pydantic, Uvicorn, SQLite
 - **Machine Learning**: Pandas, NumPy, Scikit-Learn, Joblib
@@ -72,15 +80,14 @@ The weighted F1-scores range between `0.39` and `0.43`. This reflects the diffic
 
 ```
 SafeRoute-AI/
-├── frontend/             # React Vite web interface
-├── backend/              # FastAPI endpoints, database setup, and schemas
-├── ml/                   # Data loader, preprocessing, training, & prediction scripts
-├── data/                 # Dataset file (accidents.csv) & dataset documentation
-├── tests/                # Pytest unit and integration test suite
+├── frontend/             # React Vite web interface with AI Vision Inspector
+├── backend/              # FastAPI endpoints (/api/predict, /api/analyze-image, etc.)
+├── ml/                   # Data loader, preprocessing, vision analyzer, & training scripts
+├── data/                 # Dataset file (accidents.csv) & documentation
+├── tests/                # Pytest test suite covering ML, API, and Computer Vision
 ├── docs/                 # Project documentation and Mermaid UML diagrams
 ├── statement.md          # Problem statement document
-├── README.md             # Project README
-└── .gitignore            # Git ignore rules
+└── README.md             # Project README
 ```
 
 ---
@@ -116,7 +123,7 @@ python -m ml.train
 ```bash
 uvicorn backend.main:app --port 8000
 ```
-API docs will be available at `http://127.0.0.1:8000/docs`.
+API docs available at `http://127.0.0.1:8000/docs`.
 
 ### 3. Start the Frontend Dashboard
 ```bash
@@ -129,7 +136,7 @@ Open `http://localhost:5173` in your browser.
 
 ## 🧪 Testing
 
-Run the automated test suite with pytest:
+Run the full automated test suite with pytest:
 ```bash
 python -m pytest tests/
 ```

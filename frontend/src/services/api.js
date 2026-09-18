@@ -12,6 +12,17 @@ export const predictSeverity = async (inputData) => {
   return res.data;
 };
 
+export const analyzeRoadImage = async (file) => {
+  const formData = new FormData();
+  formData.append('file', file);
+  const res = await axios.post(`${API_BASE}/analyze-image`, formData, {
+    headers: {
+      'Content-Type': 'multipart/form-data'
+    }
+  });
+  return res.data;
+};
+
 export const fetchAnalytics = async (filters = {}) => {
   const res = await axios.get(`${API_BASE}/analytics`, { params: filters });
   return res.data;

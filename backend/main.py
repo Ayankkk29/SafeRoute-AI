@@ -1,16 +1,17 @@
 import os
 from typing import Optional
-from fastapi import FastAPI, HTTPException, Query
+from fastapi import FastAPI, HTTPException, Query, UploadFile, File
 from fastapi.middleware.cors import CORSMiddleware
 
 from backend.database import init_db
 from backend.schemas import PredictionRequest, PredictionResponse, HealthResponse, AnalyticsSummary
 from backend.services.prediction import run_prediction
 from backend.services.analytics import get_analytics_summary, get_accident_records, get_model_metrics
+from ml.vision_analyzer import analyze_road_image
 
 app = FastAPI(
     title="SafeRoute AI Backend",
-    description="Road Accident Risk & Severity Analysis System API",
+    description="Multimodal Computer Vision & Road Accident Risk & Severity Analysis System API",
     version="1.0.0"
 )
 
@@ -32,7 +33,7 @@ def health_check():
     return {
         "status": "healthy",
         "version": "1.0.0",
-        "message": "SafeRoute AI Backend API is running smoothly."
+        "message": "SafeRoute AI Multimodal & Computer Vision Backend API is running smoothly."
     }
 
 @app.post("/api/predict", response_model=PredictionResponse)
@@ -43,6 +44,17 @@ def predict_accident_severity(payload: PredictionRequest):
         return result
     except Exception as e:
         raise HTTPException(status_code=500, detail=f"Prediction error: {str(e)}")
+
+@app.post("/api/analyze-image")
+async def analyze_image_endpoint(file: UploadFile = File(...)):
+    try:
+        contents = await file.read()
+        if not contents:
+            raise HTTPException(status_code=400, detail="Uploaded image file is empty.")
+        result = analyze_road_image(contents)
+        return result
+    except Exception as e:
+        raise HTTPException(status_code=500, detail=f"Computer Vision analysis error: {str(e)}")
 
 @app.get("/api/analytics")
 def get_analytics(

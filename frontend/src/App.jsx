@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import Navbar from './components/Navbar';
 import Dashboard from './pages/Dashboard';
 import Prediction from './pages/Prediction';
+import VisionInspector from './pages/VisionInspector';
 import Analytics from './pages/Analytics';
 import RiskMap from './pages/RiskMap';
 import ModelPerformance from './pages/ModelPerformance';
@@ -15,6 +16,8 @@ export default function App() {
         return <Dashboard setActiveTab={setActiveTab} />;
       case 'prediction':
         return <Prediction />;
+      case 'vision':
+        return <VisionInspector />;
       case 'analytics':
         return <Analytics />;
       case 'risk-map':
@@ -34,7 +37,7 @@ export default function App() {
       </main>
       <footer className="bg-slate-950 border-t border-slate-800 py-6 text-center text-xs text-slate-500">
         <div className="max-w-7xl mx-auto px-4">
-          SafeRoute AI — Road Accident Risk & Severity Analysis System | Academic Project
+          SafeRoute AI — Multimodal Computer Vision & Road Accident Risk Analysis System | Academic Project
         </div>
       </footer>
     </div>

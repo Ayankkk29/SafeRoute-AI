@@ -1,10 +1,11 @@
 import React from 'react';
-import { ShieldAlert, LayoutDashboard, BrainCircuit, BarChart3, MapPin, Award } from 'lucide-react';
+import { ShieldAlert, LayoutDashboard, BrainCircuit, BarChart3, MapPin, Award, Camera } from 'lucide-react';
 
 export default function Navbar({ activeTab, setActiveTab }) {
   const navItems = [
     { id: 'dashboard', label: 'Dashboard', icon: LayoutDashboard },
     { id: 'prediction', label: 'Severity Prediction', icon: BrainCircuit },
+    { id: 'vision', label: 'AI Vision Inspector', icon: Camera },
     { id: 'analytics', label: 'Accident Analytics', icon: BarChart3 },
     { id: 'risk-map', label: 'Accident Risk Map', icon: MapPin },
     { id: 'performance', label: 'Model Performance', icon: Award },
@@ -23,7 +24,7 @@ export default function Navbar({ activeTab, setActiveTab }) {
                 SafeRoute AI
               </span>
               <span className="hidden sm:inline-block ml-2 text-xs font-semibold px-2 py-0.5 rounded bg-slate-700 text-slate-300 border border-slate-600">
-                Academic Project
+                CV & ML Academic
               </span>
             </div>
           </div>
