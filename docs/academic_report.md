@@ -13,16 +13,16 @@
 ---
 
 ### 2. INTRODUCTION
-Road safety is a major public concern in India. Analyzing the severity of traffic accidents based on environmental, temporal, and road infrastructure factors enables authorities to implement targeted safety interventions. SafeRoute AI is an academic AI/ML project designed to preprocess historical accident data, train machine learning classifiers to predict accident severity (`Minor`, `Major`, `Fatal`), and provide interactive analytics dashboards and geospatial risk maps for academic evaluation.
+Road safety is a major public concern in India. Analyzing the severity of traffic accidents based on environmental, temporal, and road infrastructure factors enables authorities to implement targeted safety interventions. SafeRoute AI is an academic decision-support project designed to preprocess historical accident data, train machine learning classifiers to predict accident severity (`Minor`, `Major`, `Fatal`), and provide interactive analytics dashboards and geospatial risk maps for academic evaluation.
 
 ---
 
 ### 3. PROBLEM STATEMENT & OBJECTIVES
 #### 3.1 Problem Statement
-Road accidents result in significant casualties and infrastructure damage. Identifying key contributing factors—such as weather conditions, traffic density, road design, and peak hours—is complex. Existing tools often lack predictive capabilities or user-friendly visual analytics. SafeRoute AI addresses this problem by building a machine learning prediction pipeline integrated with a responsive web dashboard.
+Road accidents result in significant casualties and infrastructure damage. Identifying key contributing factors—such as weather conditions, traffic density, road design, and peak hours—is complex. Existing tools often lack predictive capabilities or user-friendly visual analytics. SafeRoute AI addresses this problem by building a machine learning prediction pipeline integrated with a responsive web dashboard providing **on-demand ML severity predictions**.
 
 #### 3.2 Objectives
-1. Load, clean, and preprocess the Kaggle Indian Road Accident Dataset (20,000 records).
+1. Load, clean, and preprocess the Kaggle Indian Road Accident Dataset (20,000 records). Note that dataset documentation indicates some spatial/contextual attributes are synthetically generated.
 2. Develop a reproducible Scikit-Learn ML pipeline using `ColumnTransformer` and `Pipeline`.
 3. Train and compare Logistic Regression, Decision Tree Classifier, and Random Forest Classifier.
 4. Automatically evaluate model performance using Accuracy, Weighted Precision, Recall, and F1-Score.
@@ -34,7 +34,7 @@ Road accidents result in significant casualties and infrastructure damage. Ident
 ### 4. FUNCTIONAL REQUIREMENTS
 - **FR-1 Data Preprocessing**: Clean raw dataset, handle missing values (e.g. `festival` NaNs), encode categorical features, and split 80/20 train/test.
 - **FR-2 Model Training & Selection**: Train Logistic Regression, Decision Tree, and Random Forest. Automatically select model with highest weighted F1-score.
-- **FR-3 Severity Prediction**: Accept environmental and road features via REST API and return predicted severity class and confidence %.
+- **FR-3 Severity Prediction**: Accept environmental and road features via REST API and return on-demand predicted severity class and confidence %.
 - **FR-4 Analytics Engine**: Serve statistical aggregations by weather, city, road type, traffic density, day, and hour.
 - **FR-5 Hotspot Map**: Render historical accident points on an interactive Leaflet map color-coded by risk category.
 - **FR-6 Performance Metrics**: Expose actual confusion matrices and classification reports for model evaluation.
@@ -212,6 +212,9 @@ The codebase is structured into clean, modular files:
 
 - **Selected Model**: Decision Tree Classifier based on weighted F1-Score.
 - **REST API Performance**: Inference endpoints execute in < 50 ms.
+
+#### Academic Model Performance Analysis
+The relatively modest predictive performance (Weighted F1: 0.39–0.43) indicates that the available contextual features have limited capability to uniquely distinguish accident severity. This highlights the inherent difficulty of accident severity classification in complex real-world environments and provides clear scope for future feature engineering (e.g., driver behavior data, vehicle age) and advanced class re-balancing techniques.
 
 ---
 

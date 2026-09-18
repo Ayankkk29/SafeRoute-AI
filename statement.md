@@ -4,11 +4,13 @@
 Road accidents represent a critical public safety challenge in India, leading to loss of life, severe injuries, and traffic disruption. Evaluating the interplay between environmental factors (weather, visibility, temperature), temporal conditions (hour of day, weekend, peak hours, festival contexts), and road layout (road type, lanes, traffic signals) is essential for proactive accident risk mitigation. Current analysis tools often lack predictive capabilities or easy-to-understand academic interfaces.
 
 ## Scope
-SafeRoute AI is an academic AI/ML project designed to analyze historical accident records from the **Indian Road Accident Dataset 2022–2025** (20,000 records). The scope encompasses:
+SafeRoute AI is an academic AI/ML project designed to analyze accident records from the **Indian Road Accident Dataset 2022–2025** (20,000 records). The dataset documentation notes that some spatial/contextual attributes are synthetically generated.
+
+The scope encompasses:
 1. Multiclass Machine Learning classification to predict accident severity (`Minor`, `Major`, `Fatal`).
 2. Data preprocessing, column transformation, and pipeline serialization using Scikit-Learn and Joblib.
 3. Comparative evaluation of Logistic Regression, Decision Tree, and Random Forest models.
-4. Interactive REST API backend built using FastAPI and SQLite.
+4. Interactive REST API backend built using FastAPI and SQLite providing **on-demand ML severity predictions**.
 5. React web dashboard with interactive charts, geospatial hotspot map, and model evaluation metrics.
 
 *Out of Scope*: Real-time traffic routing, live weather API integrations, mobile app development, or cloud microservice deployment.
@@ -20,14 +22,14 @@ SafeRoute AI is an academic AI/ML project designed to analyze historical acciden
 
 ## Objectives
 - Build a fully functional, reproducible Machine Learning pipeline without hardcoded metrics.
-- Predict accident severity with confidence percentages based on user-entered environmental conditions.
+- Provide on-demand ML severity predictions with confidence percentages based on user-entered environmental conditions.
 - Categorize historical dataset risk scores (`0.00–0.33 Low Risk`, `0.34–0.66 Medium Risk`, `0.67–1.00 High Risk`).
 - Provide interactive visual analytics across weather, road type, time, day, and city.
 - Fulfill all academic project guidelines and documentation standards.
 
 ## High-Level Features
 - **Summary Dashboard**: Key statistical indicators and distribution breakdown.
-- **Accident Severity Predictor**: Real-time ML inference form with class probability breakdown.
+- **Accident Severity Predictor**: On-demand ML inference form with class probability breakdown.
 - **Accident Analytics**: Filterable charts (Recharts) by City, Weather, Severity, and Road Type.
 - **Accident Risk Hotspot Map**: Interactive Leaflet map visualizing historical incident markers and risk levels.
 - **Model Performance Evaluator**: Comparative performance matrix, confusion matrix, and classification report.
@@ -44,6 +46,9 @@ SafeRoute AI is an academic AI/ML project designed to analyze historical acciden
 2. **Usability**: Clean, intuitive dark-mode interface usable without prior technical training.
 3. **Reliability**: Pydantic input validation handles invalid or missing inputs gracefully without server crashes.
 4. **Maintainability**: Modular architecture separating ML logic, API handlers, database queries, and UI components.
+
+## Results & Limitations Rationale
+- **Model Performance**: The weighted F1 scores achieved on the test set range from `0.39` to `0.43`. This relatively modest predictive performance indicates that the available contextual features have limited capability to uniquely distinguish accident severity, highlighting the difficulty of severity prediction and providing clear scope for future feature engineering.
 
 ## Technologies Used
 - **Frontend**: React (Vite), JavaScript, Tailwind CSS, Recharts, Leaflet, React-Leaflet, Lucide Icons.
