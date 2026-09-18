@@ -74,7 +74,7 @@ The system follows a simple 3-tier architecture: a React single-page frontend pa
 
 ![Figure 2: Use case diagram — user and examiner interactions](assets/usecase_diagram.png)
 
-*Figure 2: Use case diagram — user and examiner system interactions.*
+*Figure 2: Use case diagram — user and examiner interactions.*
 
 ---
 
